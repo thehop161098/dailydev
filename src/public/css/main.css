@@ -1,0 +1,276 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+body {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.wp-header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid #000000;
+    padding-bottom: 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo svg {
+    width: 50px;
+    height: 50px;
+}
+
+.logo .logo-text a {
+    font-size: 40px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #000000;
+}
+
+.login {
+    display: contents;
+}
+
+.login form {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.login form input {
+    height: 20px;
+}
+
+.login form input:focus {
+    outline: none;
+}
+
+.login form button {
+    height: 25px;
+    background-color: #fff;
+    border-bottom: 4px solid #000;
+    border-right: 4px solid #000;
+    cursor: pointer;
+}
+
+.user-login {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.user-login a {
+    text-decoration: none;
+    border: 2px solid #000;
+    color: #000000;
+    padding: 5px 10px;
+    border-right: 4px solid #000;
+    border-bottom: 4px solid #000;
+}
+.user-login form button {
+    border: 2px solid #000;
+    color: #000000;
+    padding: 5px 10px;
+    border-right: 4px solid #000;
+    border-bottom: 4px solid #000;
+    cursor: pointer;
+}
+
+.main {
+    min-height: calc(100vh - 72px - 58px);
+    padding: 20px;
+    width: 800px;
+    margin: 0 auto;
+}
+
+.main.wp-share-movie {
+    width: 600px;
+}
+
+.main .wp-content .video-card {
+    display: flex;
+    gap: 35px;
+    margin-bottom: 35px;
+}
+
+.main .wp-content .video-card .video-information {
+    width: 460px;
+}
+
+.main .wp-content .video-card .video-information .title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.main .wp-content .video-card .video-information .date {
+    margin-bottom: 10px;
+}
+
+.main .wp-content .video-card .video-information .des {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
+}
+
+.main .wp-content .wp-share-information {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 35px;
+}
+
+.main .wp-content .wp-share-information input {
+    width: 290px;
+}
+
+.main .wp-content .wp-share-information>button {
+    width: 120px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-bottom: 4px solid #000;
+    border-right: 4px solid #000;
+    cursor: pointer;
+}
+.error-message {
+    color: red;
+    text-align: center;
+}
+footer {
+    text-align: center;
+}
