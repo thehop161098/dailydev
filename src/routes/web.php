@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,18 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-Route::get('/', [VideoController::class, 'index'])->name('home');
-
-Route::middleware(['auth'])->group(function () {
-    Route::get('/share-movie', [VideoController::class, 'shareMovie']);
-    Route::post('/share-movie', [VideoController::class, 'upShareMovie'])->name('share-movie');
+Route::get('/', function () {
+    dd('hello');
 });
 
+// Route::get('/', [VideoController::class, 'index'])->name('home');
+
+// Route::middleware(['auth'])->group(function () {
+//     Route::get('/share-movie', [VideoController::class, 'shareMovie']);
+//     Route::post('/share-movie', [VideoController::class, 'upShareMovie'])->name('share-movie');
+// });
 
 
-Route::post('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+// Route::post('/login', [AuthController::class, 'login'])->name('login');
+// Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

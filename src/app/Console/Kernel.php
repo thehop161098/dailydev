@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Jobs\ProcessCrawl;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -15,6 +16,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $nextPage = '"after": ""';
+        $processCrawlJob = new ProcessCrawl($nextPage);
+        $schedule->job($processCrawlJob)->everyTenMinutes();
         // $schedule->command('inspire')->hourly();
     }
 

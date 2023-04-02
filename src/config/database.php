@@ -36,7 +36,7 @@ return [
     'connections' => [
         'mongodb' => [
             'driver' => 'mongodb',
-            'dsn' => env('DB_URI', 'mongodb+srv://robertjitran:J1UN5wgPr7KAzDva@cluster0.ip5afop.mongodb.net/?retryWrites=true&w=majority'),
+            'dsn'   => 'mongodb+srv://robertjitran:t0YiMODwNjEWDPyI@cluster0.ip5afop.mongodb.net/test?retryWrites=true&w=majority',
             'database' => 'dailydev',
         ],
         'sqlite' => [
@@ -127,7 +127,7 @@ return [
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),
-            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
+            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_') . '_database_'),
         ],
 
         'default' => [

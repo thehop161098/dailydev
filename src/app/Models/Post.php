@@ -5,20 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Youtube extends Model
+class Post extends Model
 {
     use HasFactory;
     
-    protected $table = 'youtubes';
+    protected $table = 'posts';
     public $timestamps = true;
 
-    protected $casts = [
-    ];
+    protected $casts = [];
 
     protected $fillable = [
-        'user_id',
-        'param_key',
+        'post_id',
         'title',
-		'description',
+        'image',
+		'readTime',
+		'permalink',
+		'created_at',
+		'updated_at',
     ];
 }
