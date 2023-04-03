@@ -17,7 +17,7 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->string('post_id');
             $table->string('title');
-            $table->string('image');
+            $table->longText('image');
             $table->tinyInteger('readTime');
             $table->string('permalink');
             $table->timestamps();

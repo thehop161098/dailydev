@@ -1,5 +1,6 @@
 <?php
 
+use App\Jobs\ProcessCrawl;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,7 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    dd('hello');
+    $nextPage = '"after": ""';
+    ProcessCrawl::dispatch($nextPage);
+    dd('dispatch');
 });
 
 // Route::get('/', [VideoController::class, 'index'])->name('home');

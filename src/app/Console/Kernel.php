@@ -18,7 +18,7 @@ class Kernel extends ConsoleKernel
     {
         $nextPage = '"after": ""';
         $processCrawlJob = new ProcessCrawl($nextPage);
-        $schedule->job($processCrawlJob)->everyTenMinutes();
+        $schedule->job($processCrawlJob)->everyFiveMinutes();
         // $schedule->command('inspire')->hourly();
     }
 
