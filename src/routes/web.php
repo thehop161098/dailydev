@@ -1,6 +1,7 @@
 <?php
 
 use App\Jobs\ProcessCrawl;
+use App\Jobs\ProcessCrawlMongo;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,11 +14,20 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
+    dd('choose mysql or mongo');
+});
+
+Route::get('/mysql', function () {
     $nextPage = '"after": ""';
     ProcessCrawl::dispatch($nextPage);
-    dd('dispatch');
+    dd('dispatch mysql');
+});
+
+Route::get('/mongo', function () {
+    $nextPage = '"after": ""';
+    ProcessCrawlMongo::dispatch($nextPage);
+    dd('dispatch mongo');
 });
 
 // Route::get('/', [VideoController::class, 'index'])->name('home');

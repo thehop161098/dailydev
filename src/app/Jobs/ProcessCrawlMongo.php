@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use Carbon\Carbon;
+
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -15,7 +15,7 @@ use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\DB;
 use MongoDB\BSON\UTCDateTime;
 
-class ProcessCrawl implements ShouldQueue
+class ProcessCrawlMongo implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -38,7 +38,7 @@ class ProcessCrawl implements ShouldQueue
     public function handle()
     {
         try {
-            Log::info('Next Page ' . $this->nextPage . '');
+            Log::channel('mongo')->info('Next Page ' . $this->nextPage . '');
             $client = new Client();
             $headers = [
                 'origin' => 'https://app.daily.dev',
@@ -52,43 +52,44 @@ class ProcessCrawl implements ShouldQueue
             $posts = json_decode($res->getBody()->getContents(), true);
 
             $pageInfo = $posts['data']['page']['pageInfo'];
-            Log::info('Info data: ' . json_encode($pageInfo) . '');
+            Log::channel('mongo')->info('Info data: ' . json_encode($pageInfo) . '');
 
             $data = $posts['data']['page']['edges'];
             $hasNextPage = $pageInfo['hasNextPage'];
             $endCursor = $pageInfo['endCursor'];
 
-            $dataMysql = [];
+            $dataMongo = [];
 
             foreach ($data as $edge) {
 
                 $post = $edge['node'];
 
-                $isCheckMysql = DB::table('posts')->where('post_id', $post['id'])->exists();
+                $isCheckMongo = DB::connection('mongodb')->table('posts')->where('post_id', $post['id'])->exists();
 
-                if (!$isCheckMysql) {
-                    $dataMysql[] = [
+                if (!$isCheckMongo) {
+                    $dataMongo[] = [
                         'post_id' => $post['id'],
                         'title' => $post['title'],
                         'image' => $post['image'],
                         'readTime' => $post['readTime'],
                         'permalink' => $post['permalink'],
-                        'created_at' => Carbon::now(),
-                        'updated_at' => Carbon::now(),
+                        'created_at' => new UTCDateTime,
+                        'updated_at' => new UTCDateTime,
                     ];
                 }
             }
 
-            if (!empty($dataMysql)) {
-                DB::table('posts')->insert($dataMysql);
-                Log::info('Inserted ' . count($dataMysql) . ' posts in mysql successfully!');
+
+            if (!empty($dataMongo)) {
+                DB::connection('mongodb')->table('posts')->insert($dataMongo);
+                Log::channel('mongo')->info('Inserted ' . count($dataMongo) . ' posts in mongodb successfully!');
             }
 
             if ($hasNextPage && !empty($endCursor)) {
-                $this->nextPage = '"after": "' . $endCursor . '"';
-                ProcessCrawl::dispatch($this->nextPage)->onQueue('crawl-processing');
+                $this->nextPage = '"after": "'.$endCursor.'"';
+                ProcessCrawlMongo::dispatch($this->nextPage)->onQueue('crawl-processing');
             } else {
-                Log::info('Stop process');
+                Log::channel('mongo')->info('Stop process');
             }
         } catch (\Exception $e) {
             throw $e->getMessage();

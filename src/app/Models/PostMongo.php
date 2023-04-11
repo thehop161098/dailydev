@@ -11,7 +11,10 @@ class PostMongo extends Eloquent
 
     protected $connection = 'mongodb';
     protected $collection = 'posts';
+
     public $timestamps = true;
+
+    protected $dates = ['created_at', 'updated_at'];
 
     protected $fillable = [
         'post_id',
