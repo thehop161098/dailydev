@@ -92,7 +92,7 @@ class ProcessCrawlMongo implements ShouldQueue
                 Log::channel('mongo')->info('Stop process');
             }
         } catch (\Exception $e) {
-            throw $e->getMessage();
+            throw $e;
         }
     }
 }
